@@ -16,7 +16,7 @@
 #
 
 server:
-  port: 8080
+  port: 8111
   servlet:
     encoding:
       charset: UTF-8
@@ -42,9 +42,8 @@ rocketmq:
     # configure multiple namesrv addresses to manage multiple different clusters
     namesrvAddrs:
       - 127.0.0.1:9876
-      - 127.0.0.2:9876
     # if you use rocketmq version < 3.5.8, rocketmq.config.isVIPChannel should be false.default true
-    isVIPChannel:
+    isVIPChannel: false
     # timeout for mqadminExt, default 5000ms
     timeoutMillis:
     # rocketmq-console's data path:dashboard/monitor
