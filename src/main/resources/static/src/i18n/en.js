@@ -123,5 +123,6 @@ var en = {
     "GROUP_PERM":"Group Permission",
     "SYNCHRONIZE":"Synchronize Data",
     "SHOW":"Show",
-    "HIDE":"Hide"
+    "HIDE":"Hide",
+    "MESSAGE_TYPE":"MessageType"
 }

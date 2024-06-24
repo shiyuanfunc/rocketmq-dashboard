@@ -337,6 +337,7 @@ module.controller('topicController', ['$scope', 'ngDialog', '$http', 'Notificati
             }];
             bIsUpdate = false;
         }
+        var messageTypes = ["NORMAL", "FIFO", "DELAY", "TRANSACTION", "MIXED"];
         $http({
             method: "GET",
             url: "cluster/list.query"
@@ -356,7 +357,8 @@ module.controller('topicController', ['$scope', 'ngDialog', '$http', 'Notificati
                         allClusterNameList: Object.keys(resp.data.clusterInfo.clusterAddrTable),
                         allBrokerNameList: Object.keys(resp.data.brokerServer),
                         bIsUpdate: bIsUpdate,
-                        writeOperationEnabled: $scope.writeOperationEnabled
+                        writeOperationEnabled: $scope.writeOperationEnabled,
+                        messageTypes: messageTypes
                     }
                 });
             }

@@ -16,6 +16,8 @@
  */
 package org.apache.rocketmq.dashboard.model.request;
 import com.google.common.base.Objects;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.rocketmq.common.attribute.TopicMessageType;
 
 import java.util.List;
 
@@ -30,6 +32,11 @@ public class TopicConfigInfo {
     private int readQueueNums;
     private int perm;
     private boolean order;
+
+    /**
+     * 消息类型
+     */
+    private String messageType;
 
     public List<String> getClusterNameList() {
         return clusterNameList;
@@ -91,6 +98,14 @@ public class TopicConfigInfo {
         this.order = order;
     }
 
+    public String getMessageType() {
+        return messageType;
+    }
+
+    public void setMessageType(String messageType) {
+        this.messageType = messageType;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o)
@@ -103,6 +118,15 @@ public class TopicConfigInfo {
             perm == that.perm &&
             order == that.order &&
             Objects.equal(topicName, that.topicName);
+    }
+
+    public TopicMessageType buildTopicMessageType() {
+        for (TopicMessageType value : TopicMessageType.values()) {
+            if (StringUtils.equalsIgnoreCase(this.messageType, value.name())) {
+                return value;
+            }
+        }
+        return TopicMessageType.NORMAL;
     }
 
     @Override

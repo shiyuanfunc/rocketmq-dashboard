@@ -124,5 +124,6 @@ var zh = {
     "GROUP_PERM":"消费组权限",
     "SYNCHRONIZE":"同步",
     "SHOW":"显示",
-    "HIDE":"隐藏"
+    "HIDE":"隐藏",
+    "MESSAGE_TYPE":"消息类型"
 }

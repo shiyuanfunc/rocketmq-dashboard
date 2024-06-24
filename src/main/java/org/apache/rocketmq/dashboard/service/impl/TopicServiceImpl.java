@@ -20,6 +20,8 @@ package org.apache.rocketmq.dashboard.service.impl;
 import com.google.common.base.Throwables;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
+
+import java.util.Map;
 import java.util.stream.Collectors;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.rocketmq.acl.common.AclClientRPCHook;
@@ -29,7 +31,10 @@ import org.apache.rocketmq.client.producer.SendResult;
 import org.apache.rocketmq.client.trace.TraceContext;
 import org.apache.rocketmq.client.trace.TraceDispatcher;
 import org.apache.rocketmq.common.MixAll;
+import org.apache.rocketmq.common.TopicAttributes;
 import org.apache.rocketmq.common.TopicConfig;
+import org.apache.rocketmq.common.attribute.AttributeParser;
+import org.apache.rocketmq.common.attribute.TopicMessageType;
 import org.apache.rocketmq.remoting.protocol.admin.TopicStatsTable;
 import org.apache.rocketmq.common.message.Message;
 import org.apache.rocketmq.remoting.protocol.body.ClusterInfo;
@@ -123,6 +128,8 @@ public class TopicServiceImpl extends AbstractCommonService implements TopicServ
     public void createOrUpdate(TopicConfigInfo topicCreateOrUpdateRequest) {
         TopicConfig topicConfig = new TopicConfig();
         BeanUtils.copyProperties(topicCreateOrUpdateRequest, topicConfig);
+        topicConfig.getAttributes().put(AttributeParser.ATTR_ADD_PLUS_SIGN + TopicAttributes.TOPIC_MESSAGE_TYPE_ATTRIBUTE.getName(),
+                topicCreateOrUpdateRequest.buildTopicMessageType().getValue());
         try {
             ClusterInfo clusterInfo = mqAdminExt.examineBrokerClusterInfo();
             for (String brokerName : changeToBrokerNameSet(clusterInfo.getClusterAddrTable(),
@@ -155,6 +162,8 @@ public class TopicServiceImpl extends AbstractCommonService implements TopicServ
             TopicConfigInfo topicConfigInfo = new TopicConfigInfo();
             TopicConfig topicConfig = examineTopicConfig(topic, brokerData.getBrokerName());
             BeanUtils.copyProperties(topicConfig, topicConfigInfo);
+            TopicMessageType topicMessageType = topicConfig.getTopicMessageType();
+            topicConfigInfo.setMessageType(topicMessageType.name());
             topicConfigInfo.setBrokerNameList(Lists.newArrayList(brokerData.getBrokerName()));
             topicConfigInfoList.add(topicConfigInfo);
         }
