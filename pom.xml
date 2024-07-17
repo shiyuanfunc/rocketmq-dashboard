@@ -428,8 +428,8 @@
                         <configuration>
                             <nodeVersion>v16.2.0</nodeVersion>
                             <yarnVersion>v1.22.10</yarnVersion>
-                            <downloadRoot>http://npm.taobao.org/mirrors/node/</downloadRoot>
-                            <yarnDownloadRoot>http://npm.taobao.org/mirrors/yarn/</yarnDownloadRoot>
+                            <downloadRoot>http://registry.npmmirror.com/mirrors/node/</downloadRoot>
+                            <yarnDownloadRoot>http://registry.npmmirror.com/mirrors/yarn/</yarnDownloadRoot>
                         </configuration>
                     </execution>
 
