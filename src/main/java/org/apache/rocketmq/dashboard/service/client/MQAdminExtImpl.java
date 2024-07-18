@@ -841,41 +841,4 @@ public class MQAdminExtImpl implements MQAdminExt {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'cleanControllerBrokerData'");
     }
-
-    /**
-     * manual trigger broker elect master
-     *
-     * @param controllerAddr controller address
-     * @param clusterName    cluster name
-     * @param brokerName     broker name
-     * @param brokerId       broker id
-     * @return
-     * @throws RemotingException
-     * @throws InterruptedException
-     * @throws MQBrokerException
-     */
-    @Override
-    public Pair<ElectMasterResponseHeader, BrokerMemberGroup> electMaster(String controllerAddr, String clusterName, String brokerName, Long brokerId) throws RemotingException, InterruptedException, MQBrokerException {
-        return null;
-    }
-
-    @Override
-    public void updateColdDataFlowCtrGroupConfig(String brokerAddr, Properties properties) throws RemotingConnectException, RemotingSendRequestException, RemotingTimeoutException, UnsupportedEncodingException, InterruptedException, MQBrokerException {
-
-    }
-
-    @Override
-    public void removeColdDataFlowCtrGroupConfig(String brokerAddr, String consumerGroup) throws RemotingConnectException, RemotingSendRequestException, RemotingTimeoutException, UnsupportedEncodingException, InterruptedException, MQBrokerException {
-
-    }
-
-    @Override
-    public String getColdDataFlowCtrInfo(String brokerAddr) throws RemotingConnectException, RemotingSendRequestException, RemotingTimeoutException, UnsupportedEncodingException, InterruptedException, MQBrokerException {
-        return "";
-    }
-
-    @Override
-    public String setCommitLogReadAheadMode(String brokerAddr, String mode) throws RemotingConnectException, RemotingSendRequestException, RemotingTimeoutException, UnsupportedEncodingException, InterruptedException, MQBrokerException {
-        return "";
-    }
 }
